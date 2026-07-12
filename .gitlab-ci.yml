@@ -14,6 +14,8 @@ publish:
     - |
       if [ -n "$CI_COMMIT_TAG" ]; then
         REF_TAG="$CI_COMMIT_TAG"
+      elif [ "$CI_PIPELINE_SOURCE" = "schedule" ]; then
+        REF_TAG="$BUILD_CADENCE"
       else
         REF_TAG="$CI_COMMIT_REF_SLUG"
       fi
